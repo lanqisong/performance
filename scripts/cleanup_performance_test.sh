@@ -85,7 +85,7 @@ done
 
 # 2. Clean up all routers
 routers=$(neutron router-list | grep $PREFIX | awk '{print $2}')
-ext_subnet_id=$(neutron net-list |grep "$PREFIX-ext" | awk '{print $6}')
+ext_subnet_id=$(neutron net-list |grep "t2-ext" | awk '{print $6}')
 for i in $routers; do
     subnets=$(neutron router-port-list $i | grep subnet_id | grep -v -e "$ext_subnet_id" | awk -F[',',':','"'] '{print $10}' | uniq)
     for s in $subnets; do
